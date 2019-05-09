@@ -1,8 +1,14 @@
 import { createStore } from 'redux'
 import { createAction, handleAction, reduceReducers } from 'redux-ts-utils'
-import { Card, CardColumn, ColumnMove, CardMove, CardUpdate } from './types'
+import {
+  Card,
+  CardColumn,
+  ColumnMove,
+  CardMove,
+  CardUpdate,
+  ColumnUpdate,
+} from './types'
 import shortid from 'shortid'
-import { string } from 'prop-types'
 import { persistStore, persistReducer } from 'redux-persist'
 import createElectronStorage from 'redux-persist-electron-storage'
 
@@ -35,6 +41,7 @@ export const addCard = createAction<
   listId,
   title: 'New card',
 }))
+export const updateColumn = createAction<ColumnUpdate>('UPDATE_COLUMN')
 
 const initialState: State = {
   cards: {
@@ -102,6 +109,10 @@ const reducer = reduceReducers<State>(
       findColumnWithId(state.columns, payload.listId)!.cardIds.push(
         payload.cardId
       )
+    }),
+    handleAction(updateColumn, (state, { payload }) => {
+      findColumnWithId(state.columns, payload.columnId)![payload.field] =
+        payload.newValue
     }),
   ],
   initialState

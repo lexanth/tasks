@@ -6,6 +6,10 @@ import {
   DraggableStateSnapshot,
 } from 'react-beautiful-dnd'
 import CardList from './CardList'
+import InlineTextEdit from './InlineTextEdit'
+import { connect } from 'react-redux'
+import { ColumnUpdate } from './types'
+import { updateColumn } from './createStore'
 
 const grid: number = 8
 const borderRadius: number = 2
@@ -50,7 +54,7 @@ const Title = styled(IsDraggingH4)`
   position: relative;
 `
 
-type Props = {
+type OwnProps = {
   index: number
   title: string
   cardIds: string[]
@@ -58,21 +62,29 @@ type Props = {
   isCombineEnabled: boolean
   columnId: string
 }
+type DispatchProps = {
+  updateColumn: (update: ColumnUpdate) => void
+}
+type Props = OwnProps & DispatchProps
 
-export default class Column extends Component<Props> {
+class Column extends Component<Props> {
   render() {
-    const { title, index, cardIds, columnId } = this.props
+    const { title, index, cardIds, columnId, updateColumn } = this.props
     return (
       <Draggable draggableId={columnId} index={index}>
         {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
           <Container ref={provided.innerRef} {...provided.draggableProps}>
             <Header isDragging={snapshot.isDragging}>
-              <Title
-                isDragging={snapshot.isDragging}
-                {...provided.dragHandleProps}
-              >
-                {title}
-              </Title>
+              <InlineTextEdit
+                value={title}
+                onChange={newValue =>
+                  updateColumn({
+                    columnId,
+                    newValue,
+                    field: 'title',
+                  })
+                }
+              />
             </Header>
             <CardList
               listId={columnId}
@@ -88,3 +100,8 @@ export default class Column extends Component<Props> {
     )
   }
 }
+
+export default connect(
+  null,
+  { updateColumn }
+)(Column)

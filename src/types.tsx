@@ -28,3 +28,9 @@ export type CardUpdate = {
   field: keyof Card
   newValue: string
 }
+
+export type ColumnUpdate = {
+  columnId: string
+  field: keyof CardColumn
+  newValue: string
+}
