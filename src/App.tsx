@@ -49,10 +49,9 @@ h4 {
     .Resizer.disabled:hover {
       border-color: transparent;
     }
-`
-
-const AppContainer = styled.div`
-  text-align: center;
+    #root {
+      height: 100%;
+    }
 `
 
 type State = {
@@ -71,25 +70,23 @@ class App extends React.Component<{}, State> {
   render() {
     const mainBoard = <Board containerHeight="100%" />
     return (
-      <AppContainer>
-        <EditingContext.Provider value={this.setEditing}>
-          <GlobalStyle />
-          {this.state.editing !== null ? (
-            <SplitPane
-              split="vertical"
-              defaultSize="70%" // TODO - store this
-            >
-              {mainBoard}
-              <CardEdit
-                setEditing={this.setEditing}
-                editingCardId={this.state.editing!}
-              />
-            </SplitPane>
-          ) : (
-            mainBoard
-          )}
-        </EditingContext.Provider>
-      </AppContainer>
+      <EditingContext.Provider value={this.setEditing}>
+        <GlobalStyle />
+        {this.state.editing !== null ? (
+          <SplitPane
+            split="vertical"
+            defaultSize="70%" // TODO - store this
+          >
+            {mainBoard}
+            <CardEdit
+              setEditing={this.setEditing}
+              editingCardId={this.state.editing!}
+            />
+          </SplitPane>
+        ) : (
+          mainBoard
+        )}
+      </EditingContext.Provider>
     )
   }
 }

@@ -13,7 +13,11 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
+    frame: false,
   })
+
+  mainWindow.setMenu(null)
+
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'

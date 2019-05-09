@@ -7,6 +7,13 @@ import { Provider } from 'react-redux'
 import { store, persistor } from './createStore'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import { Titlebar, Color } from 'custom-electron-titlebar'
+
+new Titlebar({
+  backgroundColor: Color.fromHex('#5c616c'),
+  // menu: null,
+})
+
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

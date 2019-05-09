@@ -25,7 +25,7 @@ const ParentContainer = styled(DivWithoutHeight)`
 
 const Container = styled.div`
   background-color: #5c616c;
-  min-height: 100vh;
+  min-height: 100%;
   /* like display:flex but will allow bleeding over the window width */
   min-width: 100vw;
   display: inline-flex;
