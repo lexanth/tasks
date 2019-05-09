@@ -11,6 +11,7 @@ import {
 import { CardColumn, ColumnMove, CardMove } from './types'
 import { connect } from 'react-redux'
 import { State, addList, reorderList, moveCard } from './createStore'
+import { opacify } from 'polished'
 
 const DivWithoutHeight: React.FC<{ height: string }> = ({
   height,
@@ -24,7 +25,7 @@ const ParentContainer = styled(DivWithoutHeight)`
 `
 
 const Container = styled.div`
-  background-color: #5c616c;
+  background-color: ${props => props.theme.board};
   min-height: 100%;
   /* like display:flex but will allow bleeding over the window width */
   min-width: 100vw;
@@ -37,14 +38,14 @@ const AddColumnTitle = styled.h4`
 const AddColumnButton = styled.div`
   margin: 8px;
   width: 250px;
-  background-color: rgba(0, 0, 0, 0.12);
-  color: white;
+  background-color: ${props => props.theme.overlay.dark};
+  color: ${props => props.theme.text};
   align-self: flex-start;
   border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.2s ease, opacity 0.1s ease;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: ${props => opacify(0.2, props.theme.overlay.dark)};
   }
 `
 type Props = {

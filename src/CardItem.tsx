@@ -4,6 +4,7 @@ import { DraggableProvided } from 'react-beautiful-dnd'
 import { connect } from 'react-redux'
 import { State } from './createStore'
 import EditingContext from './EditingContext'
+import { DefaultTheme } from 'styled-components'
 
 const grid: number = 8
 const borderRadius: number = 2
@@ -18,49 +19,34 @@ type StateProps = {
 }
 type Props = OwnProps & StateProps
 
-const getBackgroundColor = (
-  isDragging: boolean,
-  isGroupedOver: boolean | undefined
-) => {
+const getBackgroundColor = (isDragging: boolean, theme: DefaultTheme) => {
   if (isDragging) {
-    return 'rgb(89, 88, 88)'
+    return theme.primary.medium
   }
 
-  if (isGroupedOver) {
-    return 'red'
-  }
-
-  return 'rgb(44, 43, 43)'
+  return theme.primary.dark
 }
-
-const getBorderColor = (isDragging: boolean) =>
-  isDragging ? 'rgb(126, 126, 126)' : 'transparent'
 
 const PropStrippedAnchor: React.FC<
   {
     isDragging: boolean
-    isGroupedOver: boolean | undefined
     innerRef: any
   } & React.DOMAttributes<HTMLDivElement>
-> = ({ isDragging, isGroupedOver, innerRef, ...props }) => (
-  <div ref={innerRef} {...props} />
-)
+> = ({ isDragging, innerRef, ...props }) => <div ref={innerRef} {...props} />
 
 const Container = styled(PropStrippedAnchor)`
   border-radius: ${borderRadius}px;
-  border: 2px solid transparent;
-  border-color: ${props => getBorderColor(props.isDragging)};
   background-color: ${props =>
-    getBackgroundColor(props.isDragging, props.isGroupedOver)};
-  box-shadow: ${({ isDragging }) =>
-    isDragging ? `2px 2px 1px #A5ADBA` : 'none'};
+    getBackgroundColor(props.isDragging, props.theme)};
+  box-shadow: ${({ isDragging, theme }) =>
+    isDragging ? `2px 2px 1px ${theme.primary.dark}` : 'none'};
   padding: ${grid}px;
   min-height: 25px;
   margin-bottom: ${grid}px;
   user-select: none;
 
   /* anchor overrides */
-  color: white;
+  color: ${props => props.theme.text};
 
   &:hover,
   &:active {
@@ -101,14 +87,13 @@ const Content = styled.div`
 // things we should be doing in the selector as we do not know if consumers
 // will be using PureComponent
 function CardItem(props: Props) {
-  const { isDragging, isGroupedOver, provided, title, cardId } = props
+  const { isDragging, provided, title, cardId } = props
 
   return (
     <EditingContext.Consumer>
       {handleClick => (
         <Container
           isDragging={isDragging}
-          isGroupedOver={isGroupedOver}
           innerRef={provided.innerRef}
           onClick={() => {
             if (handleClick) {

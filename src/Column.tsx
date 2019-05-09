@@ -32,13 +32,13 @@ const Header = styled(IsDraggingDiv)`
   justify-content: center;
   border-top-left-radius: ${borderRadius}px;
   border-top-right-radius: ${borderRadius}px;
-  background-color: ${({ isDragging }) =>
-    isDragging ? 'rgb(102, 102, 102)' : 'rgb(82, 82, 82)'};
-  color: white;
+  background-color: ${({ isDragging, theme }) =>
+    isDragging ? theme.primary.light : theme.primary.medium};
+  color: ${props => props.theme.text};
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: rgb(102, 102, 102);
+    background-color: ${props => props.theme.primary.light};
   }
 `
 
@@ -48,10 +48,6 @@ const Title = styled(IsDraggingH4)`
   flex-grow: 1;
   user-select: none;
   position: relative;
-  &:focus {
-    outline: 2px solid rgb(153, 141, 217);
-    outline-offset: 2px;
-  }
 `
 
 type Props = {
@@ -81,11 +77,7 @@ export default class Column extends Component<Props> {
             <CardList
               listId={columnId}
               listType="CARD"
-              style={{
-                backgroundColor: snapshot.isDragging
-                  ? 'rgb(102, 102, 102)'
-                  : null,
-              }}
+              isDragging={snapshot.isDragging}
               cardIds={cardIds}
               internalScroll={this.props.isScrollable}
               isCombineEnabled={Boolean(this.props.isCombineEnabled)}

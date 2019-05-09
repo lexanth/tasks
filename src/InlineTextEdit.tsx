@@ -13,7 +13,7 @@ const text = css<CssProps>`
   ${props => props.bold && 'font-weight: bold'};
   padding: 5px;
   width: 100%;
-  color: white;
+  color: ${props => props.theme.text};
 `
 
 const Input = styled.input`
@@ -23,14 +23,14 @@ const Input = styled.input`
   border-radius: 3px;
   min-height: 18px;
   padding-bottom: 2px;
-  background-color: rgb(44, 44, 44);
+  background-color: ${props => props.theme.overlay.light};
 `
 
 const Text = styled.span`
   ${text}
   text-align: left;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: ${props => props.theme.overlay.light};
   }
 `
 

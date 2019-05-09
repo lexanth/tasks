@@ -1,10 +1,15 @@
 import React from 'react'
-import styled, { createGlobalStyle } from 'styled-components/macro'
+import styled, {
+  createGlobalStyle,
+  ThemeProvider,
+} from 'styled-components/macro'
 import SplitPane from 'react-split-pane'
 import { Card, CardColumn } from './types'
 import Board from './Board'
 import EditingContext from './EditingContext'
 import CardEdit from './CardEdit'
+import { darkTheme } from './theme'
+import { lighten } from 'polished'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -28,14 +33,13 @@ h4 {
 }
 
     .Resizer {
-        background-color: rgb(30,30,30);
+        background-color: ${props => props.theme.primary.dark};
         z-index: 1;
     }
 
      .Resizer:hover {
-        -webkit-transition: all 2s ease;
-        transition: all 2s ease;
-        background-color: rgb(50,50,50)
+        transition: all 0.5s ease;
+        background-color: ${props => lighten(0.1, props.theme.primary.dark)};
     }
 
     .Resizer.vertical {
@@ -70,23 +74,25 @@ class App extends React.Component<{}, State> {
   render() {
     const mainBoard = <Board containerHeight="100%" />
     return (
-      <EditingContext.Provider value={this.setEditing}>
-        <GlobalStyle />
-        {this.state.editing !== null ? (
-          <SplitPane
-            split="vertical"
-            defaultSize="70%" // TODO - store this
-          >
-            {mainBoard}
-            <CardEdit
-              setEditing={this.setEditing}
-              editingCardId={this.state.editing!}
-            />
-          </SplitPane>
-        ) : (
-          mainBoard
-        )}
-      </EditingContext.Provider>
+      <ThemeProvider theme={darkTheme}>
+        <EditingContext.Provider value={this.setEditing}>
+          <GlobalStyle />
+          {this.state.editing !== null ? (
+            <SplitPane
+              split="vertical"
+              defaultSize="70%" // TODO - store this
+            >
+              {mainBoard}
+              <CardEdit
+                setEditing={this.setEditing}
+                editingCardId={this.state.editing!}
+              />
+            </SplitPane>
+          ) : (
+            mainBoard
+          )}
+        </EditingContext.Provider>
+      </ThemeProvider>
     )
   }
 }

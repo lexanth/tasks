@@ -9,27 +9,27 @@ import InlineMarkdownEdit from './InlineMarkdownEdit'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #5c616c;
+  background-color: ${props => props.theme.primary.medium};
   min-height: 100%;
 `
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 8px;
-  background-color: rgb(82, 82, 82);
+  background-color: ${props => props.theme.primary.dark};
   min-height: 32px;
 `
 
 const Button = styled.button`
   border: none;
-  color: white;
+  color: ${props => props.theme.text};
   width: 30px;
   height: 30px;
   border-radius: 3px;
   cursor: pointer;
-  background-color: rgb(44, 44, 44);
+  background-color: ${props => props.theme.primary.dark};
   &:hover {
-    background-color: rgb(60, 60, 60);
+    background-color: ${props => props.theme.primary.light};
   }
 `
 

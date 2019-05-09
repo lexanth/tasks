@@ -11,6 +11,8 @@ import styled from 'styled-components/macro'
 import CardItem from './CardItem'
 import { connect } from 'react-redux'
 import { addCard } from './createStore'
+import { DefaultTheme } from 'styled-components'
+import { darken } from 'polished'
 
 const Title = styled.div``
 
@@ -18,42 +20,53 @@ type Props = {
   title?: string
   listId: string
   listType: string
-  style: any
   cardIds: string[]
   internalScroll: boolean
   isCombineEnabled: boolean
   ignoreContainerClipping?: boolean
   scrollContainerStyle?: any
   isDropDisabled?: boolean
+  isDragging: boolean
 }
 
 const grid = 8
 
 const getBackgroundColor = (
   isDraggingOver: boolean,
-  isDraggingFrom: boolean
+  isDraggingFrom: boolean,
+  isDragging: boolean,
+  theme: DefaultTheme
 ): string => {
-  if (isDraggingOver) {
-    return 'rgb(62,62,62)'
+  if (isDragging || isDraggingOver) {
+    return theme.primary.light
   }
   if (isDraggingFrom) {
-    return 'rgb(102, 102, 102)'
+    return darken(0.05, theme.primary.medium)
   }
-  return 'rgb(82, 82, 82)'
+  return theme.primary.medium
 }
 
 const PropStrippedDiv: React.FC<{
   isDraggingOver: boolean
   isDraggingFrom: boolean
   isDropDisabled?: boolean
-  style: any
-}> = ({ isDraggingOver, isDraggingFrom, isDropDisabled, style, ...props }) => (
-  <div {...props} style={style} />
-)
+  isDragging: boolean
+}> = ({
+  isDraggingOver,
+  isDraggingFrom,
+  isDropDisabled,
+  isDragging,
+  ...props
+}) => <div {...props} />
 
 const Wrapper = styled(PropStrippedDiv)`
   background-color: ${props =>
-    getBackgroundColor(props.isDraggingOver, props.isDraggingFrom)};
+    getBackgroundColor(
+      props.isDraggingOver,
+      props.isDraggingFrom,
+      props.isDragging,
+      props.theme
+    )};
   display: flex;
   flex-direction: column;
   opacity: ${({ isDropDisabled }) => (isDropDisabled ? 0.5 : 'inherit')};
@@ -104,7 +117,6 @@ const InnerCardList: React.FC<CardListProps> = (props: CardListProps) => (
             key={cardId}
             cardId={cardId}
             isDragging={dragSnapshot.isDragging}
-            isGroupedOver={Boolean(dragSnapshot.combineTargetFor)}
             provided={dragProvided}
           />
         )}
@@ -116,14 +128,15 @@ const InnerCardList: React.FC<CardListProps> = (props: CardListProps) => (
 
 const AddCardButton = styled.button`
   border: 0;
+  outline: none;
   width: 100%;
   border-radius: 0 0 2px 2px;
   background-color: transparent;
   padding: 5px;
-  color: white;
+  color: ${props => props.theme.text};
   cursor: pointer;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: ${props => props.theme.overlay.light};
   }
 `
 
@@ -163,9 +176,9 @@ export default function CardList(props: Props) {
     isCombineEnabled,
     listId = 'LIST',
     listType,
-    style,
     cardIds,
     title,
+    isDragging,
   } = props
 
   return (
@@ -181,7 +194,7 @@ export default function CardList(props: Props) {
         dropSnapshot: DroppableStateSnapshot
       ) => (
         <Wrapper
-          style={style}
+          isDragging={isDragging}
           isDraggingOver={dropSnapshot.isDraggingOver}
           isDropDisabled={isDropDisabled}
           isDraggingFrom={Boolean(dropSnapshot.draggingFromThisWith)}

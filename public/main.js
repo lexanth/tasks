@@ -13,10 +13,10 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
-    frame: false,
+    // frame: false,
   })
 
-  mainWindow.setMenu(null)
+  // mainWindow.setMenu(null)
 
   mainWindow.loadURL(
     isDev
