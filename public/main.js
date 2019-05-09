@@ -10,6 +10,9 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 680,
+    webPreferences: {
+      nodeIntegration: true,
+    },
   })
   mainWindow.loadURL(
     isDev
@@ -23,6 +26,22 @@ function createWindow() {
   })
 
   mainWindow.on('closed', () => (mainWindow = null))
+
+  if (isDev) {
+    const {
+      default: installExtension,
+      REACT_DEVELOPER_TOOLS,
+      REDUX_DEVTOOLS,
+    } = require('electron-devtools-installer')
+
+    installExtension(REACT_DEVELOPER_TOOLS)
+      .then(name => console.log(`Added Extension:  ${name}`))
+      .catch(err => console.log('An error occurred: ', err))
+
+    installExtension(REDUX_DEVTOOLS)
+      .then(name => console.log(`Added Extension:  ${name}`))
+      .catch(err => console.log('An error occurred: ', err))
+  }
 }
 
 app.on('ready', createWindow)

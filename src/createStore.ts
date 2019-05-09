@@ -3,6 +3,8 @@ import { createAction, handleAction, reduceReducers } from 'redux-ts-utils'
 import { Card, CardColumn, ColumnMove, CardMove, CardUpdate } from './types'
 import shortid from 'shortid'
 import { string } from 'prop-types'
+import { persistStore, persistReducer } from 'redux-persist'
+import createElectronStorage from 'redux-persist-electron-storage'
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
   const result = Array.from(list)
@@ -110,9 +112,16 @@ export type State = {
   columns: CardColumn[]
 }
 
-const store = createStore(
-  reducer,
+const persistConfig = {
+  key: 'root',
+  storage: createElectronStorage(),
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+export const store = createStore(
+  persistedReducer,
   (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
     (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 )
-export default store
+export const persistor = persistStore(store)
