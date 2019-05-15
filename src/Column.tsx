@@ -10,6 +10,7 @@ import InlineTextEdit from './InlineTextEdit'
 import { connect } from 'react-redux'
 import { ColumnUpdate } from './types'
 import { updateColumn } from './createStore'
+import ColumnActions from './ColumnActions'
 
 const grid: number = 8
 const borderRadius: number = 2
@@ -88,6 +89,7 @@ class Column extends Component<Props> {
                   })
                 }
               />
+              <ColumnActions columnId={columnId} />
             </Header>
             <CardList
               listId={columnId}

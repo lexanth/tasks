@@ -11,6 +11,7 @@ import {
 import shortid from 'shortid'
 import { persistStore, persistReducer } from 'redux-persist'
 import createElectronStorage from 'redux-persist-electron-storage'
+import { stat } from 'fs'
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
   const result = Array.from(list)
@@ -43,6 +44,8 @@ export const addCard = createAction<
 }))
 export const updateColumn = createAction<ColumnUpdate>('UPDATE_COLUMN')
 
+export const deleteColumn = createAction<string>('DELETE_COLUMN')
+
 const initialState: State = {
   cards: {
     jdkfds: {
@@ -73,7 +76,6 @@ const reducer = reduceReducers<State>(
       )
     }),
     handleAction(moveCard, (state, { payload }) => {
-      // TODO
       const sourceColumn = findColumnWithId(
         state.columns,
         payload.sourceListId
@@ -113,6 +115,14 @@ const reducer = reduceReducers<State>(
     handleAction(updateColumn, (state, { payload }) => {
       findColumnWithId(state.columns, payload.columnId)![payload.field] =
         payload.newValue
+    }),
+    handleAction(deleteColumn, (state, { payload }) => {
+      const column = findColumnWithId(state.columns, payload)!
+      column.cardIds.forEach(cardId => {
+        delete state.cards[cardId]
+      })
+      const index = state.columns.indexOf(column)
+      state.columns.splice(index, 1)
     }),
   ],
   initialState
