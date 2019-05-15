@@ -74,7 +74,10 @@ class Column extends Component<Props> {
       <Draggable draggableId={columnId} index={index}>
         {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
           <Container ref={provided.innerRef} {...provided.draggableProps}>
-            <Header isDragging={snapshot.isDragging}>
+            <Header
+              isDragging={snapshot.isDragging}
+              {...provided.dragHandleProps}
+            >
               <InlineTextEdit
                 value={title}
                 onChange={newValue =>

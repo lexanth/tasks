@@ -86,6 +86,7 @@ class App extends React.Component<{}, State> {
               <CardEdit
                 setEditing={this.setEditing}
                 editingCardId={this.state.editing!}
+                key={this.state.editing!}
               />
             </SplitPane>
           ) : (
