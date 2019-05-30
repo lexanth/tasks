@@ -14,19 +14,20 @@ type CssProps = {
 }
 const text = css<CssProps>`
   display: block;
-  font-size: 18px;
+  font-size: 16px;
+  border-radius: 5px;
   ${props => props.small && 'font-size: 14px'};
+  ${props => props.small && 'border-radius: 3px'};
   ${props => props.bold && 'font-weight: bold'};
-  padding: 5px;
-  width: 100%;
+  padding: 10px;
   color: ${props => props.theme.text};
+  background-color: ${props => props.theme.primary.dark};
 `
 
 const Input = styled(Editor)`
   ${text}
   border: none;
   outline: 0;
-  border-radius: 3px;
   min-height: 18px;
   padding-bottom: 2px;
   background-color: ${props => props.theme.overlay.light};
@@ -50,6 +51,14 @@ type Props = {
   bold?: boolean
 }
 
+const Container = styled.div`
+  padding: 10px;
+`
+
+const HelperText = styled.span`
+  color: ${props => props.theme.text};
+`
+
 const InlineMarkdownEdit: React.FC<Props> = ({
   onChange,
   value,
@@ -68,23 +77,36 @@ const InlineMarkdownEdit: React.FC<Props> = ({
 
   if (editing) {
     return (
-      <Input
-        value={text}
-        onValueChange={onChangeText}
-        highlight={code =>
-          prism.highlight(code, prism.languages.md, 'markdown')
-        }
-        onBlur={onFinishEditing}
-        onKeyDown={onKeyDown}
-        small={small}
-        bold={bold}
-      />
+      <Container>
+        <Input
+          value={text}
+          onValueChange={onChangeText}
+          highlight={code =>
+            prism.highlight(code, prism.languages.md, 'markdown')
+          }
+          onBlur={onFinishEditing}
+          onKeyDown={onKeyDown}
+          small={small}
+          bold={bold}
+          padding={10}
+        />
+        <HelperText>
+          You can use markdown in the editor! See{' '}
+          <a
+            href="http://commonmark.org/help/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Markdown Guide
+          </a>
+        </HelperText>
+      </Container>
     )
   } else {
     return (
-      <div onClick={onStartEditing}>
+      <Container onClick={onStartEditing}>
         <Text small={small} bold={bold} source={placeholderIfBlank(value)} />
-      </div>
+      </Container>
     )
   }
 }

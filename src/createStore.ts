@@ -11,7 +11,6 @@ import {
 import shortid from 'shortid'
 import { persistStore, persistReducer } from 'redux-persist'
 import createElectronStorage from 'redux-persist-electron-storage'
-import { stat } from 'fs'
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
   const result = Array.from(list)

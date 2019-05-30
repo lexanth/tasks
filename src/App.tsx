@@ -24,9 +24,12 @@ code {
     monospace;
 }
 
-h4 {
+h4, h1, p {
   margin: 0;
   padding: 0;
+}
+a {
+  color: inherit;
 }
 
     .Resizer {
