@@ -1,10 +1,14 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { connect } from 'react-redux'
-import { State, updateCard } from './createStore'
+import { State, updateCard, deleteCard } from './createStore'
 import InlineTextEdit from './InlineTextEdit'
-import { Card, CardColumn, ColumnMove, CardMove, CardUpdate } from './types'
+import { CardUpdate } from './types'
 import InlineMarkdownEdit from './InlineMarkdownEdit'
+import { useMenuState } from 'reakit/Menu'
+import { MenuButton } from './MenuButton'
+import { PopoverMenu } from './PopoverMenu'
+import { PopoverMenuItem } from './PopoverMenuItem'
 
 const Container = styled.div`
   display: flex;
@@ -34,13 +38,14 @@ const Button = styled.button`
 `
 
 type OwnProps = {
-  setEditing: (cardId: string | null) => void
+  setEditing: (cardId: string | null, callback?: () => void) => void
   editingCardId: string
 }
 type StateProps = {
   title: string
   description: string
   updateCard: (update: CardUpdate) => void
+  deleteCard: (cardId: string) => void
 }
 type Props = OwnProps & StateProps
 
@@ -50,33 +55,52 @@ const CardEdit: React.FC<Props> = ({
   updateCard,
   editingCardId,
   description,
-}) => (
-  <Container>
-    <Header>
-      <InlineTextEdit
-        value={title}
+  deleteCard,
+}) => {
+  const menu = useMenuState()
+  return (
+    <Container>
+      <Header>
+        <InlineTextEdit
+          value={title}
+          onChange={newValue =>
+            updateCard({
+              cardId: editingCardId,
+              field: 'title',
+              newValue: newValue,
+            })
+          }
+        />
+        <MenuButton {...menu} dark>
+          ...
+        </MenuButton>
+        <PopoverMenu {...menu}>
+          <PopoverMenuItem
+            {...menu}
+            onClick={() => {
+              setEditing(null, () => {
+                deleteCard(editingCardId)
+              })
+            }}
+          >
+            Delete card
+          </PopoverMenuItem>
+        </PopoverMenu>
+        <Button onClick={() => setEditing(null)}>X</Button>
+      </Header>
+      <InlineMarkdownEdit
+        value={description}
         onChange={newValue =>
           updateCard({
             cardId: editingCardId,
-            field: 'title',
+            field: 'description',
             newValue: newValue,
           })
         }
       />
-      <Button onClick={() => setEditing(null)}>X</Button>
-    </Header>
-    <InlineMarkdownEdit
-      value={description}
-      onChange={newValue =>
-        updateCard({
-          cardId: editingCardId,
-          field: 'description',
-          newValue: newValue,
-        })
-      }
-    />
-  </Container>
-)
+    </Container>
+  )
+}
 
 export default connect(
   (state: State, ownProps: OwnProps) => ({
@@ -85,5 +109,6 @@ export default connect(
   }),
   {
     updateCard,
+    deleteCard,
   }
 )(CardEdit)

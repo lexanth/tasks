@@ -8,7 +8,7 @@ type CssProps = {
 }
 const text = css<CssProps>`
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   ${props => props.small && 'font-size: 14px'};
   ${props => props.bold && 'font-weight: bold'};
   padding: 5px;

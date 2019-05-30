@@ -31,8 +31,10 @@ const Container = styled.div`
   min-width: 100vw;
   display: inline-flex;
 `
-const AddColumnTitle = styled.h4`
+const AddColumnTitle = styled.p`
   padding: 8px;
+  font-size: 16px;
+  margin: 0;
 `
 
 const AddColumnButton = styled.div`

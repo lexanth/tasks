@@ -45,6 +45,7 @@ export const addCard = createAction<
 export const updateColumn = createAction<ColumnUpdate>('UPDATE_COLUMN')
 
 export const deleteColumn = createAction<string>('DELETE_COLUMN')
+export const deleteCard = createAction<string>('DELETE_CARD')
 
 const initialState: State = {
   cards: {
@@ -123,6 +124,12 @@ const reducer = reduceReducers<State>(
       })
       const index = state.columns.indexOf(column)
       state.columns.splice(index, 1)
+    }),
+    handleAction(deleteCard, (state, { payload }) => {
+      delete state.cards[payload]
+      state.columns.forEach(column => {
+        column.cardIds = column.cardIds.filter(id => id !== payload)
+      })
     }),
   ],
   initialState

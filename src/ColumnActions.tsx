@@ -1,45 +1,10 @@
 import React, { useState } from 'react'
-import {
-  useMenuState,
-  Menu,
-  MenuItem,
-  MenuDisclosure,
-  MenuSeparator,
-} from 'reakit/Menu'
-import styled from 'styled-components/macro'
+import { useMenuState, MenuSeparator } from 'reakit/Menu'
 import { connect } from 'react-redux'
 import { deleteColumn } from './createStore'
-
-const MenuButton = styled(MenuDisclosure)`
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 3px;
-  cursor: pointer;
-  color: ${props => props.theme.text};
-  background-color: ${props => props.theme.primary.medium};
-  &:hover {
-    background-color: ${props => props.theme.primary.dark};
-  }
-`
-
-const PopoverMenu = styled(Menu)`
-  outline: none;
-  padding: 10px 0;
-  border-radius: 3px;
-  background-color: ${props => props.theme.primary.light};
-`
-
-const PopoverMenuItem = styled(MenuItem)`
-  border: none;
-  padding: 8px;
-  outline: none;
-  color: ${props => props.theme.text};
-  background-color: ${props => props.theme.primary.light};
-  &:hover {
-    background-color: ${props => props.theme.primary.medium};
-  }
-`
+import { MenuButton } from './MenuButton'
+import { PopoverMenu } from './PopoverMenu'
+import { PopoverMenuItem } from './PopoverMenuItem'
 
 type OwnProps = {
   columnId: string

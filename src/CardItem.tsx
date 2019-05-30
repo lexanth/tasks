@@ -80,6 +80,7 @@ const Content = styled.div`
   /* flex parent */
   display: flex;
   flex-direction: column;
+  font-size: 14px;
 `
 
 // Previously this extended React.Component

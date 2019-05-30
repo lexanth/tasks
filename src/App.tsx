@@ -63,8 +63,8 @@ class App extends React.Component<{}, State> {
     editing: null,
   }
 
-  setEditing = (cardId: string | null) => {
-    this.setState({ editing: cardId })
+  setEditing = (cardId: string | null, callback?: () => void) => {
+    this.setState({ editing: cardId }, callback)
   }
 
   render() {
