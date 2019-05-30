@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 import { DraggableProvided } from 'react-beautiful-dnd'
 import { connect } from 'react-redux'
 import { State } from './createStore'
-import EditingContext from './EditingContext'
+import EditingContext, { EditingStatus } from './EditingContext'
 import { DefaultTheme } from 'styled-components'
 import { lighten } from 'polished'
 
@@ -32,8 +32,15 @@ const PropStrippedAnchor: React.FC<
   {
     isDragging: boolean
     innerRef: any
+    active: boolean
   } & React.DOMAttributes<HTMLDivElement>
-> = ({ isDragging, innerRef, ...props }) => <div ref={innerRef} {...props} />
+> = ({ isDragging, innerRef, active, ...props }) => (
+  <div ref={innerRef} {...props} />
+)
+
+const activeBackground = css`
+  background-color: ${props => lighten(0.1, props.theme.primary.dark)};
+`
 
 const Container = styled(PropStrippedAnchor)`
   border-radius: ${borderRadius}px;
@@ -48,13 +55,17 @@ const Container = styled(PropStrippedAnchor)`
 
   /* anchor overrides */
   color: ${props => props.theme.text};
-  transition: background-color 0.1s ease;
+  transition: all 0.1s ease;
+  border: 1px solid rgba(255, 255, 255, 0);
 
+  ${props => props.active && activeBackground};
+
+  ${props => props.active && 'border: 1px solid rgba(0, 155, 255, 0.62)'};
   &:hover,
   &:active {
     color: '';
     text-decoration: none;
-    background-color: ${props => lighten(0.1, props.theme.primary.dark)};
+    ${activeBackground};
   }
 
   &:focus {
@@ -95,7 +106,7 @@ function CardItem(props: Props) {
 
   return (
     <EditingContext.Consumer>
-      {handleClick => (
+      {({ callback: handleClick, editingCardId }) => (
         <Container
           isDragging={isDragging}
           innerRef={provided.innerRef}
@@ -104,6 +115,7 @@ function CardItem(props: Props) {
               handleClick(cardId)
             }
           }}
+          active={editingCardId === cardId}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >

@@ -1,6 +1,13 @@
 import React from 'react'
 
-type Callback = (value: string | null) => void
-const EditingContext = React.createContext<Callback | null>(null)
+export type Callback = (value: string | null) => void
+export type EditingStatus = {
+  editingCardId: string | null
+  callback: Callback | null
+}
+const EditingContext = React.createContext<EditingStatus>({
+  editingCardId: null,
+  callback: null,
+})
 
 export default EditingContext

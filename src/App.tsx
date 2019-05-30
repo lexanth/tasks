@@ -2,10 +2,11 @@ import React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
 import SplitPane from 'react-split-pane'
 import Board from './Board'
-import EditingContext from './EditingContext'
+import EditingContext, { Callback } from './EditingContext'
 import CardEdit from './CardEdit'
 import { darkTheme } from './theme'
 import { lighten } from 'polished'
+import moize from 'moize'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -58,6 +59,13 @@ type State = {
   editing: string | null
 }
 
+const buildEditingStatus = moize(
+  (editingCardId: string | null, callback: Callback | null) => ({
+    editingCardId,
+    callback,
+  })
+)
+
 class App extends React.Component<{}, State> {
   state = {
     editing: null,
@@ -71,7 +79,9 @@ class App extends React.Component<{}, State> {
     const mainBoard = <Board containerHeight="100%" />
     return (
       <ThemeProvider theme={darkTheme}>
-        <EditingContext.Provider value={this.setEditing}>
+        <EditingContext.Provider
+          value={buildEditingStatus(this.state.editing, this.setEditing)}
+        >
           <GlobalStyle />
           {this.state.editing !== null ? (
             <SplitPane
