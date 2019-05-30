@@ -78,7 +78,7 @@ const Wrapper = styled(PropStrippedDiv)`
   width: 250px;
 `
 
-const scrollContainerHeight: number = 100
+const scrollContainerHeight: number = 20
 
 const DropZone = styled.div`
   /* stop the list collapsing when empty */
