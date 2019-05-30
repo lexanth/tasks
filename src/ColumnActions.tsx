@@ -57,7 +57,7 @@ const ColumnActions: React.FC<Props> = ({ columnId, deleteColumn }) => {
       <MenuButton {...menu}>...</MenuButton>
       <PopoverMenu {...menu}>
         <PopoverMenuItem {...menu} onClick={() => deleteColumn(columnId)}>
-          Delete card
+          Delete list
         </PopoverMenuItem>
       </PopoverMenu>
     </>
