@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { State } from './createStore'
 import EditingContext from './EditingContext'
 import { DefaultTheme } from 'styled-components'
+import { lighten } from 'polished'
 
 const grid: number = 8
 const borderRadius: number = 2
@@ -47,11 +48,13 @@ const Container = styled(PropStrippedAnchor)`
 
   /* anchor overrides */
   color: ${props => props.theme.text};
+  transition: background-color 0.1s ease;
 
   &:hover,
   &:active {
     color: '';
     text-decoration: none;
+    background-color: ${props => lighten(0.1, props.theme.primary.dark)};
   }
 
   &:focus {

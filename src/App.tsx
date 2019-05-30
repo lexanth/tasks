@@ -1,10 +1,6 @@
 import React from 'react'
-import styled, {
-  createGlobalStyle,
-  ThemeProvider,
-} from 'styled-components/macro'
+import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
 import SplitPane from 'react-split-pane'
-import { Card, CardColumn } from './types'
 import Board from './Board'
 import EditingContext from './EditingContext'
 import CardEdit from './CardEdit'

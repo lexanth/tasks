@@ -135,6 +135,7 @@ const AddCardButton = styled.button`
   padding: 5px;
   color: ${props => props.theme.text};
   cursor: pointer;
+  transition: background-color 0.1 ease;
   &:hover {
     background-color: ${props => props.theme.overlay.light};
   }
