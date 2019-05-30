@@ -38,7 +38,7 @@ h4 {
     }
 
      .Resizer:hover {
-        transition: all 0.5s ease;
+        transition: all 0.1s ease;
         background-color: ${props => lighten(0.1, props.theme.primary.dark)};
     }
 
