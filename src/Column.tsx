@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { ColumnUpdate } from './types'
 import { updateColumn } from './createStore'
 import ColumnActions from './ColumnActions'
+import { AddCardButton } from './AddCardButton'
 
 const grid: number = 8
 const borderRadius: number = 2
@@ -19,6 +20,7 @@ const Container = styled.div`
   margin: ${grid}px;
   display: flex;
   flex-direction: column;
+  max-height: 100%;
 `
 
 const IsDraggingDiv: React.FC<{ isDragging: boolean }> = ({
@@ -55,12 +57,17 @@ const Title = styled(IsDraggingH4)`
   position: relative;
 `
 
+const Content = styled.div`
+  max-height: 100%;
+  background-color: ${props => props.theme.primary.medium};
+  display: flex;
+  flex-direction: column;
+`
+
 type OwnProps = {
   index: number
   title: string
   cardIds: string[]
-  isScrollable: boolean
-  isCombineEnabled: boolean
   columnId: string
 }
 type DispatchProps = {
@@ -75,30 +82,31 @@ class Column extends Component<Props> {
       <Draggable draggableId={columnId} index={index}>
         {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
           <Container ref={provided.innerRef} {...provided.draggableProps}>
-            <Header
-              isDragging={snapshot.isDragging}
-              {...provided.dragHandleProps}
-            >
-              <InlineTextEdit
-                value={title}
-                onChange={newValue =>
-                  updateColumn({
-                    columnId,
-                    newValue,
-                    field: 'title',
-                  })
-                }
+            <Content>
+              <Header
+                isDragging={snapshot.isDragging}
+                {...provided.dragHandleProps}
+              >
+                <InlineTextEdit
+                  value={title}
+                  onChange={newValue =>
+                    updateColumn({
+                      columnId,
+                      newValue,
+                      field: 'title',
+                    })
+                  }
+                />
+                <ColumnActions columnId={columnId} />
+              </Header>
+              <CardList
+                listId={columnId}
+                listType="CARD"
+                isDragging={snapshot.isDragging}
+                cardIds={cardIds}
               />
-              <ColumnActions columnId={columnId} />
-            </Header>
-            <CardList
-              listId={columnId}
-              listType="CARD"
-              isDragging={snapshot.isDragging}
-              cardIds={cardIds}
-              internalScroll={this.props.isScrollable}
-              isCombineEnabled={Boolean(this.props.isCombineEnabled)}
-            />
+              <AddCardButton listId={columnId} />
+            </Content>
           </Container>
         )}
       </Draggable>

@@ -27,6 +27,7 @@ const ParentContainer = styled(DivWithoutHeight)`
 const Container = styled.div`
   background-color: ${props => props.theme.board};
   min-height: 100%;
+  max-height: 100%;
   /* like display:flex but will allow bleeding over the window width */
   min-width: 100vw;
   display: inline-flex;
@@ -112,8 +113,6 @@ class Board extends Component<Props, {}> {
                 columnId={column.id}
                 title={column.title}
                 cardIds={column.cardIds}
-                isScrollable={false}
-                isCombineEnabled={false}
               />
             ))}
             {provided.placeholder}
