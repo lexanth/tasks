@@ -29,18 +29,20 @@ export const reorderList = createAction<ColumnMove>('REORDER_LIST')
 
 export const moveCard = createAction<CardMove>('MOVE_CARD')
 export const updateCard = createAction<CardUpdate>('UPDATE_CARD')
-export const addCard = createAction<
-  {
-    cardId: string
-    listId: string
-    title: string
-  },
-  [string]
->('ADD_CARD', listId => ({
-  cardId: shortid.generate(),
-  listId,
-  title: 'New card',
-}))
+
+type AddCardPayload = {
+  cardId: string
+  listId: string
+  title: string
+}
+export const addCard = createAction<AddCardPayload, string[]>(
+  'ADD_CARD',
+  (listId, cardId) => ({
+    cardId,
+    listId,
+    title: 'New card',
+  })
+)
 export const updateColumn = createAction<ColumnUpdate>('UPDATE_COLUMN')
 
 export const deleteColumn = createAction<string>('DELETE_COLUMN')

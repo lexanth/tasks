@@ -13,6 +13,8 @@ import { connect } from 'react-redux'
 import { addCard } from './createStore'
 import { DefaultTheme } from 'styled-components'
 import { darken } from 'polished'
+import shortid from 'shortid'
+import EditingContext, { EditingStatus, Callback } from './EditingContext'
 
 const Title = styled.div``
 
@@ -146,15 +148,24 @@ type InnerListProps = {
   cardIds: string[]
   title?: string
   listId: string
-  addCard: (listId: string) => void
+  addCard: (listId: string, cardId: string) => void
+  selectCard: Callback | null
 }
 
 const InnerList = connect(
   null,
   { addCard }
 )((props: InnerListProps) => {
-  const { cardIds, dropProvided, addCard, listId } = props
+  const { cardIds, dropProvided, addCard, listId, selectCard } = props
   const title = props.title ? <Title>{props.title}</Title> : null
+
+  const addCardCallback = () => {
+    const cardId = shortid.generate()
+    addCard(listId, cardId)
+    if (selectCard) {
+      selectCard(cardId)
+    }
+  }
 
   return (
     <Container>
@@ -163,7 +174,7 @@ const InnerList = connect(
         <InnerCardList cardIds={cardIds} />
         {dropProvided.placeholder}
       </DropZone>
-      <AddCardButton onClick={() => addCard(listId)}>+ Add card</AddCardButton>
+      <AddCardButton onClick={addCardCallback}>+ Add card</AddCardButton>
     </Container>
   )
 })
@@ -194,31 +205,37 @@ export default function CardList(props: Props) {
         dropProvided: DroppableProvided,
         dropSnapshot: DroppableStateSnapshot
       ) => (
-        <Wrapper
-          isDragging={isDragging}
-          isDraggingOver={dropSnapshot.isDraggingOver}
-          isDropDisabled={isDropDisabled}
-          isDraggingFrom={Boolean(dropSnapshot.draggingFromThisWith)}
-          {...dropProvided.droppableProps}
-        >
-          {internalScroll ? (
-            <ScrollContainer style={scrollContainerStyle}>
-              <InnerList
-                cardIds={cardIds}
-                title={title}
-                dropProvided={dropProvided}
-                listId={listId}
-              />
-            </ScrollContainer>
-          ) : (
-            <InnerList
-              cardIds={cardIds}
-              title={title}
-              dropProvided={dropProvided}
-              listId={listId}
-            />
+        <EditingContext.Consumer>
+          {({ callback: selectCard }) => (
+            <Wrapper
+              isDragging={isDragging}
+              isDraggingOver={dropSnapshot.isDraggingOver}
+              isDropDisabled={isDropDisabled}
+              isDraggingFrom={Boolean(dropSnapshot.draggingFromThisWith)}
+              {...dropProvided.droppableProps}
+            >
+              {internalScroll ? (
+                <ScrollContainer style={scrollContainerStyle}>
+                  <InnerList
+                    cardIds={cardIds}
+                    title={title}
+                    dropProvided={dropProvided}
+                    listId={listId}
+                    selectCard={selectCard}
+                  />
+                </ScrollContainer>
+              ) : (
+                <InnerList
+                  cardIds={cardIds}
+                  title={title}
+                  dropProvided={dropProvided}
+                  listId={listId}
+                  selectCard={selectCard}
+                />
+              )}
+            </Wrapper>
           )}
-        </Wrapper>
+        </EditingContext.Consumer>
       )}
     </Droppable>
   )
