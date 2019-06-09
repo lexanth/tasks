@@ -20,7 +20,7 @@ const DivWithoutHeight: React.FC<{ height: string }> = ({
 
 const ParentContainer = styled(DivWithoutHeight)`
   height: ${({ height }) => height};
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-y: auto;
 `
 
@@ -29,7 +29,9 @@ const Container = styled.div`
   min-height: 100%;
   max-height: 100%;
   /* like display:flex but will allow bleeding over the window width */
-  min-width: 100vw;
+  /* min-width: 100vw; */
+  width: 100%;
+  overflow-x: auto;
   display: inline-flex;
 `
 const AddColumnTitle = styled.p`
@@ -41,6 +43,7 @@ const AddColumnTitle = styled.p`
 const AddColumnButton = styled.div`
   margin: 8px;
   width: 250px;
+  flex-shrink: 0;
   background-color: ${props => props.theme.overlay.dark};
   color: ${props => props.theme.text};
   align-self: flex-start;
