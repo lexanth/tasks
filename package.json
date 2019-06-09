@@ -1,6 +1,6 @@
 {
   "name": "tasks",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "description": "A trello-like task manager",
   "dependencies": {
@@ -47,7 +47,7 @@
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "predist": "yarn build",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder -p"
+    "dist": "electron-builder -p onTag"
   },
   "eslintConfig": {
     "extends": "react-app"
