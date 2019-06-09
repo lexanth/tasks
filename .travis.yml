@@ -20,6 +20,10 @@ jobs:
     # - stage: Test
     #   script:
     #     - npm test
+    - stage: Build
+      if: tag IS NOT present
+      script:
+        - yarn build
     - stage: Deploy Windows & Mac
       if: tag IS present
       os: osx
