@@ -1,7 +1,7 @@
 sudo: false
 
 language: node_js
-node_js: '9.11.1'
+node_js: '10.15.3'
 
 cache:
   directories:
