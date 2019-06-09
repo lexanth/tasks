@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro'
 import { DraggableProvided } from 'react-beautiful-dnd'
 import { connect } from 'react-redux'
 import { State } from './createStore'
-import EditingContext, { EditingStatus } from './EditingContext'
+import EditingContext from './EditingContext'
 import { DefaultTheme } from 'styled-components'
 import { lighten } from 'polished'
 

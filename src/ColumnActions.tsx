@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useMenuState, MenuSeparator } from 'reakit/Menu'
+import React from 'react'
+import { useMenuState } from 'reakit/Menu'
 import { connect } from 'react-redux'
 import { deleteColumn } from './createStore'
 import { MenuButton } from './MenuButton'

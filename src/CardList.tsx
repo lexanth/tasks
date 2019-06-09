@@ -87,12 +87,6 @@ const DropZone = styled.div`
   padding: ${grid}px;
 `
 
-const ScrollContainer = styled.div`
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: ${scrollContainerHeight}px;
-`
-
 type CardListProps = {
   cardIds: string[]
 }

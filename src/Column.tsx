@@ -28,11 +28,6 @@ const IsDraggingDiv: React.FC<{ isDragging: boolean }> = ({
   ...props
 }) => <div {...props} />
 
-const IsDraggingH4: React.FC<{ isDragging: boolean }> = ({
-  isDragging,
-  ...props
-}) => <h4 {...props} />
-
 const Header = styled(IsDraggingDiv)`
   display: flex;
   align-items: center;
@@ -47,14 +42,6 @@ const Header = styled(IsDraggingDiv)`
   &:hover {
     background-color: ${props => props.theme.primary.light};
   }
-`
-
-const Title = styled(IsDraggingH4)`
-  padding: ${grid}px;
-  transition: background-color ease 0.2s;
-  flex-grow: 1;
-  user-select: none;
-  position: relative;
 `
 
 const Content = styled.div`

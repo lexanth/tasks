@@ -1,10 +1,4 @@
-import {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  MutableRefObject,
-} from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 const useInlineEdit = (value: string, onChange: (newValue: string) => void) => {
   const [editing, setEditing] = useState(false)

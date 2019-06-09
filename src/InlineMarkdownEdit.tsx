@@ -1,10 +1,9 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import useInlineEdit from './useInlineEdit'
 import styled, { css } from 'styled-components/macro'
 import ReactMarkdown from 'react-markdown'
 import Editor from 'react-simple-code-editor'
 import * as prism from 'prismjs'
-// import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-markdown'
 import 'prismjs/themes/prism.css'
 
@@ -69,7 +68,7 @@ const InlineMarkdownEdit: React.FC<Props> = ({
     onChangeText,
     onFinishEditing,
     onStartEditing,
-    inputEl,
+    // inputEl,
     text,
     editing,
     onKeyDown,

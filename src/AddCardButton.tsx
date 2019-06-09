@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import shortid from 'shortid'
 import { connect } from 'react-redux'
-import EditingContext, { EditingStatus, Callback } from './EditingContext'
+import EditingContext, { Callback } from './EditingContext'
 import { addCard } from './createStore'
 
 const Button = styled.button`
