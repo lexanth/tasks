@@ -8,7 +8,7 @@ import {
   DraggableStateSnapshot,
 } from 'react-beautiful-dnd'
 import styled from 'styled-components/macro'
-import CardItem from './CardItem'
+import CardItem from '../cards/CardItem'
 import { DefaultTheme } from 'styled-components'
 import { darken } from 'polished'
 

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { connect } from 'react-redux'
-import { State, updateCard, deleteCard } from './createStore'
-import InlineTextEdit from './InlineTextEdit'
-import { CardUpdate } from './types'
-import InlineMarkdownEdit from './InlineMarkdownEdit'
+import { State, updateCard, deleteCard } from '../createStore'
+import InlineTextEdit from '../atoms/InlineTextEdit'
+import { CardUpdate } from '../types'
+import InlineMarkdownEdit from '../atoms/InlineMarkdownEdit'
 import { useMenuState } from 'reakit/Menu'
-import { MenuButton } from './MenuButton'
-import { PopoverMenu } from './PopoverMenu'
-import { PopoverMenuItem } from './PopoverMenuItem'
+import { MenuButton } from '../atoms/MenuButton'
+import { PopoverMenu } from '../atoms/PopoverMenu'
+import { PopoverMenuItem } from '../atoms/PopoverMenuItem'
 
 const Container = styled.div`
   display: flex;

@@ -6,10 +6,10 @@ import {
   DraggableStateSnapshot,
 } from 'react-beautiful-dnd'
 import CardList from './CardList'
-import InlineTextEdit from './InlineTextEdit'
+import InlineTextEdit from '../atoms/InlineTextEdit'
 import { connect } from 'react-redux'
-import { ColumnUpdate } from './types'
-import { updateColumn } from './createStore'
+import { ColumnUpdate } from '../types'
+import { updateColumn } from '../createStore'
 import ColumnActions from './ColumnActions'
 import { AddCardButton } from './AddCardButton'
 

@@ -8,7 +8,7 @@ import { store, persistor } from './createStore'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import { Titlebar, Color } from 'custom-electron-titlebar'
-import { darkTheme } from './theme'
+import { darkTheme } from './theme/theme'
 
 new Titlebar({
   backgroundColor: Color.fromHex(darkTheme.primary.dark),

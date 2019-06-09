@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/macro'
-import Column from './Column'
+import Column from '../column/Column'
 import {
   DragDropContext,
   Droppable,
@@ -8,9 +8,9 @@ import {
   DroppableProvided,
   DraggableLocation,
 } from 'react-beautiful-dnd'
-import { CardColumn, ColumnMove, CardMove } from './types'
+import { CardColumn, ColumnMove, CardMove } from '../types'
 import { connect } from 'react-redux'
-import { State, addList, reorderList, moveCard } from './createStore'
+import { State, addList, reorderList, moveCard } from '../createStore'
 import { opacify } from 'polished'
 
 const DivWithoutHeight: React.FC<{ height: string }> = ({

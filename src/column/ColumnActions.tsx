@@ -1,10 +1,10 @@
 import React from 'react'
 import { useMenuState } from 'reakit/Menu'
 import { connect } from 'react-redux'
-import { deleteColumn } from './createStore'
-import { MenuButton } from './MenuButton'
-import { PopoverMenu } from './PopoverMenu'
-import { PopoverMenuItem } from './PopoverMenuItem'
+import { deleteColumn } from '../createStore'
+import { MenuButton } from '../atoms/MenuButton'
+import { PopoverMenu } from '../atoms/PopoverMenu'
+import { PopoverMenuItem } from '../atoms/PopoverMenuItem'
 
 type OwnProps = {
   columnId: string
