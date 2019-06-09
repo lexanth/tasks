@@ -6,6 +6,7 @@ import { State } from './createStore'
 import EditingContext from './EditingContext'
 import { DefaultTheme } from 'styled-components'
 import { lighten } from 'polished'
+import DescriptionIcon from './DescriptionIcon'
 
 const grid: number = 8
 const borderRadius: number = 2
@@ -17,6 +18,7 @@ type OwnProps = {
 }
 type StateProps = {
   title: string
+  hasDescription: boolean
 }
 type Props = OwnProps & StateProps
 
@@ -76,6 +78,7 @@ const Container = styled(PropStrippedAnchor)`
 
   /* flexbox */
   display: flex;
+  flex-direction: column;
 `
 
 const Content = styled.div`
@@ -102,7 +105,7 @@ const Content = styled.div`
 // things we should be doing in the selector as we do not know if consumers
 // will be using PureComponent
 function CardItem(props: Props) {
-  const { isDragging, provided, title, cardId } = props
+  const { isDragging, provided, title, cardId, hasDescription } = props
 
   return (
     <EditingContext.Consumer>
@@ -120,6 +123,7 @@ function CardItem(props: Props) {
           {...provided.dragHandleProps}
         >
           <Content>{title}</Content>
+          {hasDescription && <DescriptionIcon />}
         </Container>
       )}
     </EditingContext.Consumer>
@@ -128,4 +132,5 @@ function CardItem(props: Props) {
 
 export default connect((state: State, ownProps: OwnProps) => ({
   title: state.cards[ownProps.cardId].title,
+  hasDescription: !!state.cards[ownProps.cardId].description,
 }))(React.memo<Props>(CardItem))
