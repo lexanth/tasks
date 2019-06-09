@@ -2,6 +2,7 @@
   "name": "tasks",
   "version": "0.1.0",
   "private": true,
+  "description": "A trello-like task manager",
   "dependencies": {
     "@types/jest": "24.0.12",
     "@types/node": "12.0.0",
@@ -44,13 +45,14 @@
     "eject": "rescripts eject",
     "electron-start": "electron .",
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "preelectron-pack": "yarn build",
-    "electron-pack": "build --em.main=build/electron.js"
+    "predist": "yarn build",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "main": "public/main.js",
+  "main": "public/electron.js",
   "homepage": "./",
   "browserslist": {
     "production": [
@@ -75,12 +77,8 @@
   },
   "build": {
     "appId": "uk.lexanth.tasks",
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
+    "linux": {
+      "target": "AppImage"
     }
   },
   "prettier": {
