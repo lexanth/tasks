@@ -26,10 +26,12 @@ function createWindow() {
       : `file://${path.join(__dirname, '../build/index.html')}`
   )
 
-  app.setAboutPanelOptions({
-    applicationName: 'Tasks',
-    applicationVersion: '0.0.1',
-  })
+  if (process.platform !== 'win32') {
+    app.setAboutPanelOptions({
+      applicationName: 'Tasks',
+      applicationVersion: '0.1.6',
+    })
+  }
 
   mainWindow.on('closed', () => (mainWindow = null))
 
