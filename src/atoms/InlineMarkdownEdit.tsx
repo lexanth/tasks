@@ -104,7 +104,12 @@ const InlineMarkdownEdit: React.FC<Props> = ({
   } else {
     return (
       <Container onClick={onStartEditing}>
-        <Text small={small} bold={bold} source={placeholderIfBlank(value)} />
+        <Text
+          small={small}
+          bold={bold}
+          source={placeholderIfBlank(value)}
+          linkTarget="_blank"
+        />
       </Container>
     )
   }

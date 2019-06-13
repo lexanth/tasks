@@ -35,6 +35,12 @@ function createWindow() {
 
   mainWindow.on('closed', () => (mainWindow = null))
 
+  // Open links in browser
+  mainWindow.webContents.on('new-window', function(e, url) {
+    e.preventDefault()
+    electron.shell.openExternal(url)
+  })
+
   if (isDev) {
     const {
       default: installExtension,
