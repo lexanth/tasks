@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg6197"
+   version="1.1"
+   viewBox="0 0 6.3499998 6.3499998"
+   height="24"
+   width="24">
+  <defs
+     id="defs6191">
+    <filter
+       id="filter6237"
+       style="color-interpolation-filters:sRGB">
+      <feFlood
+         id="feFlood6227"
+         result="flood"
+         flood-color="rgb(0,170,255)"
+         flood-opacity="0.498039" />
+      <feComposite
+         id="feComposite6229"
+         result="composite1"
+         operator="out"
+         in2="SourceGraphic"
+         in="flood" />
+      <feGaussianBlur
+         id="feGaussianBlur6231"
+         result="blur"
+         stdDeviation="3"
+         in="composite1" />
+      <feOffset
+         id="feOffset6233"
+         result="offset"
+         dy="6"
+         dx="6" />
+      <feComposite
+         id="feComposite6235"
+         result="fbSourceGraphic"
+         operator="atop"
+         in2="SourceGraphic"
+         in="offset" />
+      <feColorMatrix
+         id="feColorMatrix6299"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feFlood
+         in="fbSourceGraphic"
+         result="flood"
+         flood-color="rgb(0,170,255)"
+         flood-opacity="0.498039"
+         id="feFlood6301" />
+      <feComposite
+         result="composite1"
+         operator="in"
+         in="flood"
+         id="feComposite6303"
+         in2="fbSourceGraphic" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="12.0219"
+         in="composite1"
+         id="feGaussianBlur6305" />
+      <feOffset
+         result="offset"
+         dy="0"
+         dx="0"
+         id="feOffset6307" />
+      <feComposite
+         result="composite2"
+         operator="over"
+         in="fbSourceGraphic"
+         id="feComposite6309"
+         in2="offset" />
+    </filter>
+    <filter
+       height="1.0733333"
+       y="-0.036666663"
+       width="1.3300002"
+       x="-0.16500008"
+       id="filter8874"
+       style="color-interpolation-filters:sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur8876"
+         stdDeviation="0.072760391" />
+    </filter>
+    <filter
+       height="1.2255451"
+       y="-0.11277254"
+       width="1.3182631"
+       x="-0.15913156"
+       id="filter8974"
+       style="color-interpolation-filters:sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur8976"
+         stdDeviation="0.07017254" />
+    </filter>
+    <filter
+       height="1.1343977"
+       y="-0.067198843"
+       width="1.3360145"
+       x="-0.16800723"
+       id="filter8982"
+       style="color-interpolation-filters:sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur8984"
+         stdDeviation="0.074086461" />
+    </filter>
+  </defs>
+  <metadata
+     id="metadata6194">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-290.65)"
+     id="layer1">
+    <rect
+       rx="0.26936898"
+       y="291.18863"
+       x="0.5433408"
+       height="5.31529"
+       width="5.3034787"
+       id="rect8858"
+       style="opacity:1;fill:#5c616c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill" />
+    <g
+       transform="matrix(1.0007773,0,0,0.94582167,0.02400112,15.949421)"
+       id="g8992">
+      <rect
+         rx="0.061461601"
+         y="291.44376"
+         x="2.6458337"
+         height="4.7624989"
+         width="1.0583324"
+         id="rect8860"
+         style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#00cfff;stroke-width:0.26458332;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;filter:url(#filter8874)" />
+      <rect
+         style="fill:#2c2c2c;fill-opacity:1;fill-rule:nonzero;stroke:#00cfff;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect7434"
+         width="1.0583324"
+         height="4.7624989"
+         x="2.6458337"
+         y="291.44376"
+         rx="0.061461601" />
+    </g>
+    <g
+       transform="matrix(1.0007773,0,0,0.94582167,0.02400112,15.949421)"
+       id="g8988">
+      <rect
+         style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#00cfff;stroke-width:0.26458332;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;filter:url(#filter8982)"
+         id="rect8880"
+         width="1.0583324"
+         height="2.6459906"
+         x="0.92604214"
+         y="291.44376"
+         rx="0.061461601" />
+      <rect
+         rx="0.061461601"
+         y="291.44376"
+         x="0.92604214"
+         height="2.6459906"
+         width="1.0583324"
+         id="rect8878"
+         style="fill:#2c2c2c;fill-opacity:1;fill-rule:nonzero;stroke:#00cfff;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill" />
+    </g>
+    <g
+       transform="matrix(1.0007773,0,0,0.94582167,0.02400112,15.949421)"
+       id="g8996">
+      <rect
+         rx="0.061461601"
+         y="291.44376"
+         x="4.3656254"
+         height="1.4933963"
+         width="1.0583324"
+         id="rect8920"
+         style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#00cfff;stroke-width:0.26458332;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;filter:url(#filter8974)" />
+      <rect
+         style="fill:#2c2c2c;fill-opacity:1;fill-rule:nonzero;stroke:#00cfff;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect8918"
+         width="1.0583324"
+         height="1.4933963"
+         x="4.3656254"
+         y="291.44376"
+         rx="0.061461601" />
+    </g>
+  </g>
+</svg>

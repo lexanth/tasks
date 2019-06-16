@@ -14,6 +14,7 @@ function createWindow() {
       nodeIntegration: true,
     },
     frame: isDev,
+    icon: path.join(__dirname, '../build/icons/96x96.png'),
   })
 
   if (!isDev) {
