@@ -1,5 +1,6 @@
 {
   "name": "tasks",
+  "productName": "Tasks",
   "version": "0.1.7",
   "private": true,
   "description": "A trello-like task manager",
