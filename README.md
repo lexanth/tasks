@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lexanth/tasks.svg?branch=master)](https://travis-ci.org/lexanth/tasks)
+
 ## About
 
 This is an app a bit like Trello, but much simpler. It's totally offline, no server, no synchronisation. Mainly because I wanted something like Trello at work but wasn't allowed to use a cloud service (and offline capability is handy sometimes).
