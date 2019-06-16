@@ -30,7 +30,7 @@ function createWindow() {
   if (process.platform !== 'win32') {
     app.setAboutPanelOptions({
       applicationName: 'Tasks',
-      applicationVersion: '0.1.6',
+      applicationVersion: '0.1.7',
     })
   }
 
