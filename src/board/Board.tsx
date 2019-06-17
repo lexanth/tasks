@@ -10,7 +10,7 @@ import {
 } from 'react-beautiful-dnd'
 import { CardColumn, ColumnMove, CardMove } from '../types'
 import { connect } from 'react-redux'
-import { State, addList, reorderList, moveCard } from '../createStore'
+import { State, addList, reorderList, moveCard } from "../reducer";
 import { opacify } from 'polished'
 
 const DivWithoutHeight: React.FC<{ height: string }> = ({

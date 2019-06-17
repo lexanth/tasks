@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMenuState } from 'reakit/Menu'
 import { connect } from 'react-redux'
-import { deleteColumn } from '../createStore'
+import { deleteColumn } from '../reducer'
 import { MenuButton } from '../atoms/MenuButton'
 import { PopoverMenu } from '../atoms/PopoverMenu'
 import { PopoverMenuItem } from '../atoms/PopoverMenuItem'

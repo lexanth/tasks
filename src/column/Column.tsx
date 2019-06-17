@@ -9,7 +9,7 @@ import CardList from './CardList'
 import InlineTextEdit from '../atoms/InlineTextEdit'
 import { connect } from 'react-redux'
 import { ColumnUpdate } from '../types'
-import { updateColumn } from '../createStore'
+import { updateColumn } from '../reducer'
 import ColumnActions from './ColumnActions'
 import { AddCardButton } from './AddCardButton'
 

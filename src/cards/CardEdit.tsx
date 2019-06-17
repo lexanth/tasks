@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { connect } from 'react-redux'
-import { State, updateCard, deleteCard } from '../createStore'
+import { State, updateCard, deleteCard } from '../reducer'
 import InlineTextEdit from '../atoms/InlineTextEdit'
 import { CardUpdate } from '../types'
 import InlineMarkdownEdit from '../atoms/InlineMarkdownEdit'
