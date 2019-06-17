@@ -1,7 +1,7 @@
 {
   "name": "tasks",
   "productName": "Tasks",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "private": true,
   "description": "A trello-like task manager",
   "repository": {
@@ -86,7 +86,11 @@
       "target": "AppImage"
     },
     "win": {
-      "target": ["nsis", "portable"]
+      "target": ["nsis", "portable"],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "icon": "build/icon.icns"
     }
   },
   "prettier": {
