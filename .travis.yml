@@ -24,6 +24,7 @@ jobs:
       if: tag IS NOT present
       script:
         - yarn build
+        - yarn test
     - stage: Deploy Windows & Mac
       if: tag IS present
       os: osx
